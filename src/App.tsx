@@ -1,4 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
+import AnimatedList, {
+  type AnimatedListEntry,
+} from './components/AnimatedList'
 import {
   portfolioData,
   type NavItem,
@@ -379,6 +382,19 @@ function Profile() {
 }
 
 function Projects() {
+  const [selectedRepositoryIndex, setSelectedRepositoryIndex] = useState(0)
+  const selectedRepository =
+    portfolioData.repositories[selectedRepositoryIndex] ??
+    portfolioData.repositories[0]
+  const repositoryItems: AnimatedListEntry[] = portfolioData.repositories.map(
+    (repository) => ({
+      id: repository.name,
+      label: repository.displayName,
+      meta: `${repository.type} · ${repository.language}`,
+      secondary: repository.name,
+    }),
+  )
+
   return (
     <section
       className="section projects"
@@ -471,30 +487,62 @@ function Projects() {
               <ArrowIcon external />
             </a>
           </header>
-          <div className="repository-grid">
-            {portfolioData.repositories.map((repository, index) => (
+          <div className="repository-browser">
+            <div className="repository-browser__list">
+              <p className="repository-browser__hint">
+                滚动浏览，或聚焦后使用上下方向键切换
+              </p>
+              <AnimatedList
+                items={repositoryItems}
+                initialSelectedIndex={0}
+                showGradients
+                enableArrowNavigation
+                displayScrollbar
+                onItemSelect={(_, index) => setSelectedRepositoryIndex(index)}
+              />
+            </div>
+
+            <article
+              className="repository-browser__detail"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              <div>
+                <p className="repository-browser__counter">
+                  当前作品{' '}
+                  {String(selectedRepositoryIndex + 1).padStart(2, '0')} /{' '}
+                  {String(portfolioData.repositories.length).padStart(2, '0')}
+                </p>
+                <p className="repository-browser__category">
+                  {selectedRepository.type} · {selectedRepository.language}
+                </p>
+                <h4>{selectedRepository.displayName}</h4>
+                <p className="repository-browser__description">
+                  {selectedRepository.description}
+                </p>
+              </div>
+
+              <dl className="repository-browser__meta">
+                <div>
+                  <dt>主要技术</dt>
+                  <dd>{selectedRepository.language}</dd>
+                </div>
+                <div>
+                  <dt>仓库标识</dt>
+                  <dd>{selectedRepository.name}</dd>
+                </div>
+              </dl>
+
               <a
-                href={repository.url}
+                className="text-link repository-browser__link"
+                href={selectedRepository.url}
                 target="_blank"
                 rel="noreferrer"
-                key={repository.name}
               >
-                <span className="repository-grid__number">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <div>
-                  <p className="repository-grid__type">
-                    {repository.type} · {repository.language}
-                  </p>
-                  <h4>{repository.displayName}</h4>
-                  <span className="repository-grid__slug">{repository.name}</span>
-                </div>
-                <p className="repository-grid__description">
-                  {repository.description}
-                </p>
+                打开当前项目仓库
                 <ArrowIcon external />
               </a>
-            ))}
+            </article>
           </div>
         </div>
       </div>
