@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { gsap } from 'gsap'
 import './BounceCards.css'
 
@@ -12,9 +12,6 @@ interface BounceCardsProps {
   images?: BounceCardImage[]
   containerWidth?: number
   containerHeight?: number
-  animationDelay?: number
-  animationStagger?: number
-  easeType?: string
   transformStyles?: string[]
   enableHover?: boolean
 }
@@ -57,51 +54,10 @@ export default function BounceCards({
   images = [],
   containerWidth = 760,
   containerHeight = 620,
-  animationDelay = 0.2,
-  animationStagger = 0.1,
-  easeType = 'elastic.out(1, 0.65)',
   transformStyles = defaultTransforms,
   enableHover = true,
 }: BounceCardsProps) {
   const containerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
-
-    const reduceMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce), (max-width: 680px)',
-    ).matches
-    const context = gsap.context(() => {
-      const cards = gsap.utils.toArray<HTMLElement>('.bounce-card')
-      if (reduceMotion) {
-        gsap.set(cards, { scale: 1, opacity: 1, y: 0 })
-        return
-      }
-
-      gsap.fromTo(
-        cards,
-        { scale: 0.35, opacity: 0, y: 42 },
-        {
-          scale: 1,
-          opacity: 1,
-          y: 0,
-          stagger: animationStagger,
-          ease: easeType,
-          delay: animationDelay,
-          duration: 0.8,
-        },
-      )
-    }, container)
-
-    return () => context.revert()
-  }, [
-    animationDelay,
-    animationStagger,
-    easeType,
-    images.length,
-    transformStyles,
-  ])
 
   const canAnimateHover = () =>
     enableHover &&
@@ -122,8 +78,8 @@ export default function BounceCards({
         gsap.to(card, {
           transform: withoutRotation(baseTransform),
           zIndex: images.length + 2,
-          duration: 0.38,
-          ease: 'back.out(1.25)',
+          duration: 0.7,
+          ease: 'power3.out',
           overwrite: 'auto',
         })
         return
@@ -133,9 +89,9 @@ export default function BounceCards({
       gsap.to(card, {
         transform: withHorizontalOffset(baseTransform, offset),
         zIndex: index + 1,
-        duration: 0.38,
-        ease: 'back.out(1.25)',
-        delay: Math.abs(hoveredIndex - index) * 0.035,
+        duration: 0.7,
+        ease: 'power3.out',
+        delay: Math.abs(hoveredIndex - index) * 0.045,
         overwrite: 'auto',
       })
     })
@@ -151,8 +107,8 @@ export default function BounceCards({
       gsap.to(card, {
         transform: transformStyles[index] ?? 'none',
         zIndex: index + 1,
-        duration: 0.38,
-        ease: 'back.out(1.25)',
+        duration: 0.72,
+        ease: 'power3.out',
         overwrite: 'auto',
       })
     })
@@ -167,6 +123,7 @@ export default function BounceCards({
         height: containerHeight,
       }}
       aria-label="个人生活影像"
+      data-stagger-group
     >
       {images.map((image, index) => (
         <div
@@ -178,6 +135,7 @@ export default function BounceCards({
           }}
           onMouseEnter={() => pushSiblings(index)}
           onMouseLeave={resetSiblings}
+          data-stagger-item
         >
           <img
             src={image.src}

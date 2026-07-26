@@ -17,7 +17,6 @@
     0 28px 60px rgba(56, 42, 36, 0.18),
     0 4px 12px rgba(56, 42, 36, 0.12);
   transform-origin: center;
-  will-change: transform;
 }
 
 .bounce-card::after {
@@ -59,16 +58,15 @@
   }
 
   .bounce-card {
-    width: 210px;
+    width: 196px;
     border-width: 5px;
     box-shadow:
       0 18px 40px rgba(56, 42, 36, 0.16),
       0 3px 9px rgba(56, 42, 36, 0.1);
-    will-change: auto;
   }
 
   .bounce-card-0 {
-    transform: translate(-60px) rotate(-7deg) !important;
+    transform: translate(-54px) rotate(-7deg) !important;
   }
 
   .bounce-card-1 {
@@ -76,12 +74,6 @@
   }
 
   .bounce-card-2 {
-    transform: translate(60px) rotate(7deg) !important;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bounce-card {
-    will-change: auto;
+    transform: translate(54px) rotate(7deg) !important;
   }
 }

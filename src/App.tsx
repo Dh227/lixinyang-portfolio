@@ -3,11 +3,18 @@ import AnimatedList, {
   type AnimatedListEntry,
 } from './components/AnimatedList'
 import BounceCards from './components/BounceCards'
+import { usePortfolioMotion } from './hooks/usePortfolioMotion'
 import {
   portfolioData,
   type NavItem,
   type SectionId,
 } from './data/portfolio'
+
+const galleryTransforms = [
+  'translate(-145px) rotate(-7deg)',
+  'rotate(1deg)',
+  'translate(145px) rotate(7deg)',
+]
 
 function useActiveSection(items: NavItem[]) {
   const [activeSection, setActiveSection] = useState<SectionId>('home')
@@ -54,7 +61,9 @@ function useInitialHashAlignment() {
     const target = id ? document.getElementById(id) : null
     if (!target) return
 
-    const timeout = window.setTimeout(() => {
+    let timeout = 0
+    const alignTarget = () => {
+      window.clearTimeout(timeout)
       const headerOffset = window.innerWidth <= 680 ? 68 : 76
       const targetTop = target.getBoundingClientRect().top + window.scrollY
       const root = document.documentElement
@@ -64,38 +73,31 @@ function useInitialHashAlignment() {
       window.requestAnimationFrame(() => {
         root.style.scrollBehavior = previousScrollBehavior
       })
-    }, 80)
-
-    return () => window.clearTimeout(timeout)
-  }, [])
-}
-
-function useRevealOnScroll() {
-  useEffect(() => {
-    const elements = Array.from(
-      document.querySelectorAll<HTMLElement>('[data-reveal]'),
-    )
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      elements.forEach((element) => element.classList.add('is-visible'))
-      return
     }
 
-    elements.forEach((element) => element.classList.add('reveal-pending'))
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible')
-            observer.unobserve(entry.target)
-          }
-        })
-      },
-      { threshold: 0.08, rootMargin: '0px 0px -6% 0px' },
+    const reducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches
+    timeout = window.setTimeout(
+      alignTarget,
+      reducedMotion ? 0 : 6500,
     )
 
-    elements.forEach((element) => observer.observe(element))
-    return () => observer.disconnect()
+    if (!reducedMotion) {
+      window.addEventListener(
+        'portfolio-opening-complete',
+        alignTarget,
+        { once: true },
+      )
+    }
+
+    return () => {
+      window.clearTimeout(timeout)
+      window.removeEventListener(
+        'portfolio-opening-complete',
+        alignTarget,
+      )
+    }
   }, [])
 }
 
@@ -143,20 +145,48 @@ function SectionHeading({
   kicker,
   title,
   description,
+  englishTitle,
 }: {
   id: string
   kicker: string
   title: string
   description?: string
+  englishTitle: string
 }) {
   return (
-    <header className="section-heading" data-reveal>
-      <p className="section-heading__kicker">{kicker}</p>
-      <h2 id={id}>{title}</h2>
+    <header className="section-heading">
+      <div className="section-heading__english-mask" aria-hidden="true">
+        <p className="section-heading__english">{englishTitle}</p>
+      </div>
+      <p className="section-heading__kicker" data-section-copy>
+        {kicker}
+      </p>
+      <h2 id={id} data-section-copy>
+        {title}
+      </h2>
       {description ? (
-        <p className="section-heading__description">{description}</p>
+        <p className="section-heading__description" data-section-copy>
+          {description}
+        </p>
       ) : null}
     </header>
+  )
+}
+
+function OpeningCurtain() {
+  return (
+    <div className="opening-curtain" aria-hidden="true">
+      <div className="opening-curtain__inner">
+        <div className="opening-curtain__line" />
+        <div className="opening-curtain__word-mask">
+          <p className="opening-curtain__word-inner">李鑫洋</p>
+        </div>
+        <div className="opening-curtain__meta">
+          <span>个人作品集</span>
+          <span>售前 / 解决方案工程师 · 2027</span>
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -235,16 +265,19 @@ function Hero() {
   return (
     <section className="hero" id="home" aria-labelledby="hero-title">
       <div className="section-shell hero__inner">
-        <header className="hero__masthead" data-reveal>
+        <header className="hero__masthead">
           <p>{portfolioData.profile.direction}</p>
           <h1 id="hero-title">
-            把技术讲清楚，
-            <br />
-            把方案做落地。
+            <span className="hero__title-line">
+              <span className="hero__title-inner">把技术讲清楚，</span>
+            </span>
+            <span className="hero__title-line">
+              <span className="hero__title-inner">把方案做落地。</span>
+            </span>
           </h1>
         </header>
 
-        <div className="hero__editorial" data-reveal>
+        <div className="hero__editorial">
           <aside className="hero__index" aria-label="作品概况">
             <strong>07</strong>
             <span>个公开作品</span>
@@ -253,6 +286,7 @@ function Hero() {
 
           <figure className="hero__media">
             <video
+              data-parallax
               autoPlay
               muted
               loop
@@ -304,17 +338,23 @@ function Hero() {
 
 function Profile() {
   return (
-    <section className="section profile" id="profile" aria-labelledby="profile-title">
+    <section
+      className="section profile"
+      id="profile"
+      aria-labelledby="profile-title"
+      data-motion-section
+    >
       <div className="section-shell">
         <SectionHeading
           id="profile-title"
+          englishTitle="PROFILE"
           kicker="个人经历"
           title="在真实场景里理解技术，也用作品留下自己的思考路径。"
           description="从医疗设备到智慧水务，从业务原型到本地工具，每一段经历都在训练我把复杂问题组织清楚。"
         />
 
-        <div className="profile__stage">
-          <figure className="profile-gallery" data-reveal>
+        <div className="profile__stage" data-stagger-group>
+          <figure className="profile-gallery" data-image-reveal>
             <div className="profile-gallery__heading">
               <span>个人影像</span>
               <span>生活切片 · 01—03</span>
@@ -323,14 +363,7 @@ function Profile() {
               images={portfolioData.galleryImages}
               containerWidth={760}
               containerHeight={620}
-              animationDelay={0.18}
-              animationStagger={0.12}
-              easeType="elastic.out(1, 0.62)"
-              transformStyles={[
-                'translate(-145px) rotate(-7deg)',
-                'rotate(1deg)',
-                'translate(145px) rotate(7deg)',
-              ]}
+              transformStyles={galleryTransforms}
               enableHover
             />
             <figcaption>
@@ -339,7 +372,7 @@ function Profile() {
             </figcaption>
           </figure>
 
-          <div className="profile__content" data-reveal>
+          <div className="profile__content" data-stagger-item>
             <p className="profile__lead">
               一名愿意走近现场、把问题讲清楚，并能动手做出验证的人。
             </p>
@@ -366,18 +399,26 @@ function Profile() {
           </div>
         </div>
 
-        <div className="profile__stats" aria-label="个人项目数据" data-reveal>
+        <div
+          className="profile__stats"
+          aria-label="个人项目数据"
+          data-stagger-group
+        >
           {portfolioData.stats.map((stat) => (
-            <div key={stat.label}>
+            <div key={stat.label} data-stagger-item>
               <strong>{stat.value}</strong>
               <span>{stat.label}</span>
             </div>
           ))}
         </div>
 
-        <div className="experience-list" aria-label="经历时间线">
+        <div
+          className="experience-list"
+          aria-label="经历时间线"
+          data-stagger-group
+        >
           {portfolioData.experiences.map((experience, index) => (
-            <article key={experience.company} data-reveal>
+            <article key={experience.company} data-stagger-item>
               <span className="experience-list__number">
                 经历 {String(index + 1).padStart(2, '0')}
               </span>
@@ -414,10 +455,12 @@ function Projects() {
       className="section projects"
       id="projects"
       aria-labelledby="projects-title"
+      data-motion-section
     >
       <div className="section-shell">
         <SectionHeading
           id="projects-title"
+          englishTitle="SELECTED WORK"
           kicker="精选项目"
           title="不是概念清单，而是已经推进到可验证状态的作品。"
           description="每个项目都连接一个真实问题：业务协作、出行规划，或求职者对效率、隐私和控制权的需要。"
@@ -425,7 +468,11 @@ function Projects() {
 
         <div className="featured-projects">
           {portfolioData.featuredProjects.map((project, index) => (
-            <article className="featured-project" key={project.title} data-reveal>
+            <article
+              className="featured-project"
+              key={project.title}
+              data-project-reveal
+            >
               <header className="featured-project__head">
                 <span>项目 {String(index + 1).padStart(2, '0')}</span>
                 <h3>{project.title}</h3>
@@ -440,7 +487,12 @@ function Projects() {
                   rel="noreferrer"
                   aria-label={`查看 ${project.title} 的代码仓库`}
                 >
-                  <img src={project.image} alt={project.imageAlt} loading="lazy" />
+                  <img
+                    src={project.image}
+                    alt={project.imageAlt}
+                    loading="lazy"
+                    data-parallax
+                  />
                   <span>
                     查看代码仓库
                     <ArrowIcon external />
@@ -486,7 +538,7 @@ function Projects() {
           ))}
         </div>
 
-        <div className="repository-index" data-reveal>
+        <div className="repository-index" data-block-reveal>
           <header>
             <div>
               <p>完整作品目录</p>
@@ -570,18 +622,20 @@ function Strengths() {
       className="section strengths"
       id="strengths"
       aria-labelledby="strengths-title"
+      data-motion-section
     >
       <div className="section-shell">
         <SectionHeading
           id="strengths-title"
+          englishTitle="CAPABILITIES"
           kicker="个人优势"
           title="我能带来的，不只是某一种工具的熟练度。"
           description="更重要的是理解问题、组织信息、快速验证，并在便利与边界之间做出清楚判断。"
         />
 
-        <div className="strength-grid">
+        <div className="strength-grid" data-stagger-group>
           {portfolioData.strengths.map((strength, index) => (
-            <article key={strength.title} data-reveal>
+            <article key={strength.title} data-stagger-item>
               <span>能力 {String(index + 1).padStart(2, '0')}</span>
               <h3>{strength.title}</h3>
               <p className="strength-grid__summary">{strength.summary}</p>
@@ -626,22 +680,38 @@ function Contact() {
   }
 
   return (
-    <section className="contact" id="contact" aria-labelledby="contact-title">
+    <section
+      className="contact"
+      id="contact"
+      aria-labelledby="contact-title"
+      data-contact-section
+    >
       <div className="section-shell contact__inner">
-        <p className="contact__eyebrow">期待与你合作</p>
-        <h2 id="contact-title">
+        <div className="contact__english-mask" aria-hidden="true">
+          <p className="contact__english">LET&apos;S TALK</p>
+        </div>
+        <p className="contact__eyebrow" data-contact-copy>
+          期待与你合作
+        </p>
+        <h2 id="contact-title" data-contact-copy>
           想找一个能理解技术，
           <br />
           也愿意走近业务现场的人？
         </h2>
-        <p className="contact__lead">欢迎通过邮件或代码作品主页联系我。</p>
+        <p className="contact__lead" data-contact-copy>
+          欢迎通过邮件或代码作品主页联系我。
+        </p>
 
-        <a className="contact__email" href={`mailto:${portfolioData.profile.email}`}>
+        <a
+          className="contact__email"
+          href={`mailto:${portfolioData.profile.email}`}
+          data-contact-copy
+        >
           {portfolioData.profile.email}
           <ArrowIcon />
         </a>
 
-        <div className="contact__actions">
+        <div className="contact__actions" data-contact-copy>
           <a className="button button--amber" href={`mailto:${portfolioData.profile.email}`}>
             <MailIcon />
             发送邮件
@@ -674,12 +744,14 @@ function Contact() {
 }
 
 export default function App() {
+  const appRef = useRef<HTMLDivElement>(null)
   const activeSection = useActiveSection(portfolioData.navigation)
-  useRevealOnScroll()
+  usePortfolioMotion(appRef)
   useInitialHashAlignment()
 
   return (
-    <>
+    <div className="site-app" ref={appRef}>
+      <OpeningCurtain />
       <a className="skip-link" href="#profile">
         跳到主要内容
       </a>
@@ -691,6 +763,6 @@ export default function App() {
         <Strengths />
         <Contact />
       </main>
-    </>
+    </div>
   )
 }
