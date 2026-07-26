@@ -1,0 +1,70 @@
+<svg width="1600" height="960" viewBox="0 0 1600 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="960" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111B38"/>
+      <stop offset=".55" stop-color="#243966"/>
+      <stop offset="1" stop-color="#6A3E67"/>
+    </linearGradient>
+    <linearGradient id="agent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#82BBD5"/>
+      <stop offset="1" stop-color="#D7A75C"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="960" fill="url(#bg)"/>
+  <path d="M0 170H1600M0 790H1600" stroke="#A6BDD3" stroke-opacity=".12"/>
+  <path d="M210 0V960M1390 0V960" stroke="#A6BDD3" stroke-opacity=".12"/>
+  <text x="92" y="112" fill="#D7A75C" font-family="PingFang SC, sans-serif" font-size="22" letter-spacing="4">简历多智能体工作室</text>
+  <text x="92" y="178" fill="#F8F3EB" font-family="PingFang SC, sans-serif" font-size="46" font-weight="600">从岗位解析到面试训练的一体化工作流</text>
+  <rect x="92" y="250" width="1416" height="612" rx="12" fill="#0C142C" fill-opacity=".82" stroke="#92ADCA" stroke-opacity=".28"/>
+  <rect x="92" y="250" width="1416" height="58" rx="12" fill="#192747"/>
+  <circle cx="132" cy="279" r="8" fill="#A65359"/>
+  <circle cx="159" cy="279" r="8" fill="#D7A75C"/>
+  <circle cx="186" cy="279" r="8" fill="#6CB18B"/>
+  <text x="1294" y="285" fill="#8FA9C1" font-family="PingFang SC, sans-serif" font-size="14">本地模式</text>
+  <rect x="124" y="344" width="256" height="474" rx="8" fill="#151F3B"/>
+  <text x="154" y="389" fill="#8FA9C1" font-family="PingFang SC, sans-serif" font-size="14">工作空间</text>
+  <rect x="145" y="426" width="214" height="54" rx="7" fill="#263A62"/>
+  <rect x="165" y="447" width="112" height="10" rx="5" fill="#F8F3EB"/>
+  <g fill="#637A9A">
+    <rect x="165" y="518" width="146" height="10" rx="5"/>
+    <rect x="165" y="576" width="128" height="10" rx="5"/>
+    <rect x="165" y="634" width="160" height="10" rx="5"/>
+    <rect x="165" y="692" width="118" height="10" rx="5"/>
+  </g>
+  <text x="428" y="378" fill="#F8F3EB" font-family="PingFang SC, sans-serif" font-size="24" font-weight="600">智能体协作画布</text>
+  <path d="M573 510L773 457L987 535L1207 450" stroke="url(#agent)" stroke-width="4" stroke-dasharray="10 12"/>
+  <path d="M573 510L790 672L987 535" stroke="url(#agent)" stroke-width="4" stroke-dasharray="10 12"/>
+  <g>
+    <rect x="460" y="450" width="228" height="122" rx="12" fill="#243962" stroke="#7CAACA"/>
+    <circle cx="505" cy="493" r="20" fill="#7CAACA"/>
+    <text x="541" y="499" fill="#F8F3EB" font-family="PingFang SC, sans-serif" font-size="19">岗位解析</text>
+    <text x="487" y="541" fill="#92A8C1" font-family="PingFang SC, sans-serif" font-size="13">岗位分析</text>
+  </g>
+  <g>
+    <rect x="676" y="394" width="228" height="122" rx="12" fill="#2D3E68" stroke="#9B8CB4"/>
+    <circle cx="721" cy="437" r="20" fill="#9B8CB4"/>
+    <text x="757" y="443" fill="#F8F3EB" font-family="PingFang SC, sans-serif" font-size="19">简历优化</text>
+    <text x="703" y="485" fill="#A9A1BD" font-family="PingFang SC, sans-serif" font-size="13">简历优化</text>
+  </g>
+  <g>
+    <rect x="880" y="475" width="228" height="122" rx="12" fill="#343B63" stroke="#D7A75C"/>
+    <circle cx="925" cy="518" r="20" fill="#D7A75C"/>
+    <text x="961" y="524" fill="#F8F3EB" font-family="PingFang SC, sans-serif" font-size="19">人工确认</text>
+    <text x="907" y="566" fill="#C8B283" font-family="PingFang SC, sans-serif" font-size="13">人工确认</text>
+  </g>
+  <g>
+    <rect x="1092" y="389" width="228" height="122" rx="12" fill="#3E3B64" stroke="#C17D9F"/>
+    <circle cx="1137" cy="432" r="20" fill="#C17D9F"/>
+    <text x="1173" y="438" fill="#F8F3EB" font-family="PingFang SC, sans-serif" font-size="19">面试训练</text>
+    <text x="1119" y="480" fill="#C3A0B5" font-family="PingFang SC, sans-serif" font-size="13">面试训练</text>
+  </g>
+  <g>
+    <rect x="676" y="611" width="228" height="122" rx="12" fill="#223A59" stroke="#6CB18B"/>
+    <circle cx="721" cy="654" r="20" fill="#6CB18B"/>
+    <text x="757" y="660" fill="#F8F3EB" font-family="PingFang SC, sans-serif" font-size="19">本地档案</text>
+    <text x="703" y="702" fill="#89B9A1" font-family="PingFang SC, sans-serif" font-size="13">本地档案</text>
+  </g>
+  <rect x="1170" y="742" width="276" height="56" rx="28" fill="#F8F3EB"/>
+  <circle cx="1205" cy="770" r="8" fill="#6CB18B"/>
+  <text x="1230" y="776" fill="#172442" font-family="PingFang SC, sans-serif" font-size="16" font-weight="600">关键操作保留人工确认</text>
+</svg>

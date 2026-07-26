@@ -1,0 +1,63 @@
+<svg width="1600" height="960" viewBox="0 0 1600 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="40" x2="1480" y2="920" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A2B46"/>
+      <stop offset="1" stop-color="#174F71"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#E0B34E"/>
+      <stop offset="1" stop-color="#A63C2E"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="960" fill="url(#bg)"/>
+  <circle cx="1390" cy="120" r="310" stroke="#4D86A6" stroke-opacity=".35"/>
+  <circle cx="1390" cy="120" r="190" stroke="#4D86A6" stroke-opacity=".25"/>
+  <text x="92" y="105" fill="#E0B34E" font-family="PingFang SC, sans-serif" font-size="22" letter-spacing="4">医疗售前运营</text>
+  <text x="92" y="165" fill="#F7F3EA" font-family="PingFang SC, sans-serif" font-size="42" font-weight="600">售前支持与销售运营工作台</text>
+  <rect x="92" y="228" width="1416" height="634" rx="8" fill="#F8FBFC"/>
+  <rect x="92" y="228" width="248" height="634" rx="8" fill="#102F47"/>
+  <rect x="130" y="270" width="118" height="18" rx="9" fill="#E0B34E"/>
+  <rect x="130" y="333" width="148" height="12" rx="6" fill="#7893A5"/>
+  <rect x="130" y="389" width="118" height="12" rx="6" fill="#7893A5"/>
+  <rect x="130" y="445" width="142" height="12" rx="6" fill="#F7F3EA"/>
+  <rect x="118" y="425" width="194" height="52" rx="6" fill="#244D69"/>
+  <rect x="130" y="501" width="100" height="12" rx="6" fill="#7893A5"/>
+  <rect x="130" y="557" width="136" height="12" rx="6" fill="#7893A5"/>
+  <rect x="130" y="613" width="112" height="12" rx="6" fill="#7893A5"/>
+  <text x="386" y="286" fill="#15344A" font-family="PingFang SC, sans-serif" font-size="20" font-weight="600">销售运营概览</text>
+  <rect x="386" y="320" width="310" height="146" rx="8" fill="#EAF1F4"/>
+  <rect x="722" y="320" width="310" height="146" rx="8" fill="#EAF1F4"/>
+  <rect x="1058" y="320" width="404" height="146" rx="8" fill="#EAF1F4"/>
+  <text x="418" y="361" fill="#66808F" font-family="PingFang SC, sans-serif" font-size="17">活跃销售线索</text>
+  <text x="418" y="425" fill="#0A2B46" font-family="Menlo, monospace" font-size="54" font-weight="700">40+</text>
+  <text x="754" y="361" fill="#66808F" font-family="PingFang SC, sans-serif" font-size="17">设备档案</text>
+  <text x="754" y="425" fill="#0A2B46" font-family="Menlo, monospace" font-size="54" font-weight="700">120+</text>
+  <text x="1090" y="361" fill="#66808F" font-family="PingFang SC, sans-serif" font-size="17">交付异常闭环</text>
+  <path d="M1092 428C1158 420 1178 388 1238 397C1297 406 1327 353 1427 370" stroke="url(#accent)" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="1092" cy="428" r="8" fill="#E0B34E"/>
+  <circle cx="1238" cy="397" r="8" fill="#D47D3C"/>
+  <circle cx="1427" cy="370" r="8" fill="#A63C2E"/>
+  <rect x="386" y="494" width="1076" height="314" rx="8" fill="white" stroke="#D6E0E5"/>
+  <text x="418" y="542" fill="#15344A" font-family="PingFang SC, sans-serif" font-size="19" font-weight="600">需求 → 参数 → 库存 → 交付</text>
+  <rect x="418" y="578" width="1012" height="1" fill="#DFE7EA"/>
+  <g fill="#EAF1F4">
+    <rect x="418" y="610" width="1012" height="46" rx="5"/>
+    <rect x="418" y="676" width="1012" height="46" rx="5"/>
+    <rect x="418" y="742" width="1012" height="46" rx="5"/>
+  </g>
+  <g fill="#183F59">
+    <rect x="446" y="628" width="164" height="10" rx="5"/>
+    <rect x="446" y="694" width="214" height="10" rx="5"/>
+    <rect x="446" y="760" width="138" height="10" rx="5"/>
+  </g>
+  <g fill="#93A9B5">
+    <rect x="726" y="628" width="186" height="10" rx="5"/>
+    <rect x="726" y="694" width="132" height="10" rx="5"/>
+    <rect x="726" y="760" width="210" height="10" rx="5"/>
+  </g>
+  <g fill="#E0B34E">
+    <rect x="1268" y="622" width="118" height="22" rx="11"/>
+    <rect x="1268" y="688" width="118" height="22" rx="11"/>
+    <rect x="1268" y="754" width="118" height="22" rx="11"/>
+  </g>
+</svg>
