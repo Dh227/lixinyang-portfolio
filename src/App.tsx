@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import AnimatedList, {
   type AnimatedListEntry,
 } from './components/AnimatedList'
+import BounceCards from './components/BounceCards'
 import {
   portfolioData,
   type NavItem,
@@ -313,15 +314,28 @@ function Profile() {
         />
 
         <div className="profile__stage">
-          <figure className="portrait" data-reveal>
-            <img
-              src="/profile-hero.jpg"
-              alt="李鑫洋在北京天安门前的个人照片"
-              loading="lazy"
+          <figure className="profile-gallery" data-reveal>
+            <div className="profile-gallery__heading">
+              <span>个人影像</span>
+              <span>生活切片 · 01—03</span>
+            </div>
+            <BounceCards
+              images={portfolioData.galleryImages}
+              containerWidth={760}
+              containerHeight={620}
+              animationDelay={0.18}
+              animationStagger={0.12}
+              easeType="elastic.out(1, 0.62)"
+              transformStyles={[
+                'translate(-145px) rotate(-7deg)',
+                'rotate(1deg)',
+                'translate(145px) rotate(7deg)',
+              ]}
+              enableHover
             />
             <figcaption>
-              <span>{portfolioData.profile.name}</span>
-              <span>{portfolioData.profile.direction}</span>
+              <span>在现场之外，保持好奇与行动力。</span>
+              <span>移动指针，展开照片</span>
             </figcaption>
           </figure>
 

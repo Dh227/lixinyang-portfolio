@@ -44,6 +44,11 @@ export interface Strength {
   detail: string
 }
 
+export interface GalleryImage {
+  src: string
+  alt: string
+}
+
 export interface PortfolioData {
   profile: {
     name: string
@@ -56,6 +61,7 @@ export interface PortfolioData {
   }
   navigation: NavItem[]
   stats: Stat[]
+  galleryImages: GalleryImage[]
   experiences: Experience[]
   featuredProjects: FeaturedProject[]
   repositories: Repository[]
@@ -88,6 +94,20 @@ export const portfolioData: PortfolioData = {
     { value: '03', label: '段实习与实践经历' },
     { value: '02', label: '个核心行业场景' },
     { value: '2027', label: '校招求职年份' },
+  ],
+  galleryImages: [
+    {
+      src: '/profile/lifestyle-transformers.jpg',
+      alt: '李鑫洋在变形金刚主题场景前合影',
+    },
+    {
+      src: '/profile/lifestyle-lakeside.jpg',
+      alt: '李鑫洋在湖边休息，手持饮品',
+    },
+    {
+      src: '/profile/lifestyle-stone.jpg',
+      alt: '李鑫洋身穿黑色外套，靠在石墙旁手持饮品',
+    },
   ],
   experiences: [
     {
