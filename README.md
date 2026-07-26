@@ -30,7 +30,7 @@ npm run build:sites
 npm run preview
 ```
 
-生产构建输出到 `dist/`；`build:sites` 会额外生成 Sites 所需的静态站点入口。
+生产构建输出到 `dist/`；`build:sites` 会将浏览器资源整理到 `dist/client/`，并生成 Sites 所需的静态站点入口。
 
 ## 更新内容
 
