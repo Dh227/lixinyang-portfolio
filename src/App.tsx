@@ -214,6 +214,17 @@ function Header({ activeSection }: { activeSection: SectionId }) {
     return () => document.body.classList.remove('menu-open')
   }, [menuOpen])
 
+  useEffect(() => {
+    const desktopViewport = window.matchMedia('(min-width: 981px)')
+    const closeMenuOnDesktop = (event: MediaQueryListEvent) => {
+      if (event.matches) setMenuOpen(false)
+    }
+
+    desktopViewport.addEventListener('change', closeMenuOnDesktop)
+    return () =>
+      desktopViewport.removeEventListener('change', closeMenuOnDesktop)
+  }, [])
+
   return (
     <header
       className={`site-header${scrolled || menuOpen ? ' site-header--solid' : ''}`}
@@ -242,7 +253,7 @@ function Header({ activeSection }: { activeSection: SectionId }) {
           aria-label="主要导航"
         >
           <ul>
-            {portfolioData.navigation.map((item) => (
+            {portfolioData.navigation.map((item, index) => (
               <li key={item.id}>
                 <a
                   href={`#${item.id}`}
@@ -250,7 +261,13 @@ function Header({ activeSection }: { activeSection: SectionId }) {
                   aria-current={activeSection === item.id ? 'location' : undefined}
                   onClick={() => setMenuOpen(false)}
                 >
-                  {item.label}
+                  <span className="site-nav__number" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="site-nav__label">{item.label}</span>
+                  <span className="site-nav__mark" aria-hidden="true">
+                    ↘
+                  </span>
                 </a>
               </li>
             ))}

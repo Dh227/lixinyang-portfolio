@@ -60,6 +60,9 @@ export function usePortfolioMotion(rootRef: RefObject<HTMLDivElement | null>) {
       openingFinished = true
       window.clearTimeout(openingFailsafe)
       document.body.style.overflow = previousBodyOverflow
+      gsap.set(root.querySelector('.site-header'), {
+        clearProps: 'transform',
+      })
       ScrollTrigger.refresh()
       window.dispatchEvent(new Event(openingCompleteEvent))
     }
