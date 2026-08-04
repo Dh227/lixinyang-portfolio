@@ -75,7 +75,7 @@ export const portfolioData: PortfolioData = {
     direction: '2027 校招 · 售前 / 解决方案工程师',
     statement: '把技术讲清楚，\n把方案做落地。',
     introduction: [
-      '我是一名物联网工程本科生，也是一名持续构建产品的实践者。我的项目从医疗设备售前、智慧水务交付延伸到 macOS 工具、求职工作台与智能旅行产品。',
+      '我是一名物联网工程本科生，也是一名持续构建产品的实践者。我的项目从医疗设备售前、JetLinks 智慧水务与 IoT 交付延伸到 macOS 工具、求职工作台和智能旅行产品。',
       '我擅长从真实业务场景里找到结构：拆解需求、梳理流程、组织信息，再用原型、数据或代码把想法推进到可以验证的状态。',
     ],
     email: 'mynameisxinyangli@163.com',
@@ -90,7 +90,7 @@ export const portfolioData: PortfolioData = {
     { id: 'contact', label: '联系我' },
   ],
   stats: [
-    { value: '07', label: '个公开作品' },
+    { value: '10', label: '个公开作品' },
     { value: '03', label: '段实习与实践经历' },
     { value: '02', label: '个核心行业场景' },
     { value: '2027', label: '校招求职年份' },
@@ -134,6 +134,18 @@ export const portfolioData: PortfolioData = {
   ],
   featuredProjects: [
     {
+      title: 'JetLinks 智慧水务本地模拟平台',
+      categoryLabel: 'IoT 交付实验室',
+      description:
+        '围绕 JetLinks Community 搭建本地智慧泵站演示闭环，覆盖设备建模、MQTT 遥测、场景注入、告警恢复、远程控制和验收脚本。',
+      image: '/projects/water-iot-cover.svg',
+      imageAlt: 'JetLinks 智慧水务本地模拟平台的泵站遥测与告警界面概念图',
+      repositoryUrl: 'https://github.com/Dh227/jetlinks-water-station-demo',
+      language: 'JavaScript',
+      highlights: ['五类场景注入', '本地闭环验收', 'Apple Silicon 适配'],
+      tags: ['JetLinks', 'MQTT', 'Docker Compose', 'IoT 交付'],
+    },
+    {
       title: '医疗设备售前支持与销售运营管理原型',
       categoryLabel: '业务原型',
       description:
@@ -171,6 +183,30 @@ export const portfolioData: PortfolioData = {
     },
   ],
   repositories: [
+    {
+      name: 'jetlinks-water-station-demo',
+      displayName: 'JetLinks 智慧水务模拟平台',
+      description: '本地智慧泵站、MQTT 遥测、故障注入与验收闭环。',
+      url: 'https://github.com/Dh227/jetlinks-water-station-demo',
+      language: 'JavaScript',
+      type: 'IoT 交付实验室',
+    },
+    {
+      name: 'lixinyang-portfolio',
+      displayName: '个人求职作品集网站',
+      description: '使用 React、TypeScript 与 GSAP 构建的响应式求职作品集。',
+      url: 'https://github.com/Dh227/lixinyang-portfolio',
+      language: 'TypeScript',
+      type: '前端作品集',
+    },
+    {
+      name: 'daily-work-report-skill',
+      displayName: '中文工作日报 Skill',
+      description: '基于证据生成、校验并脱敏同步中文个人工作日报。',
+      url: 'https://github.com/Dh227/daily-work-report-skill',
+      language: 'Python',
+      type: '工作流工具',
+    },
     {
       name: 'medical-sales-support-ops',
       displayName: '医疗设备售前运营原型',
@@ -254,5 +290,5 @@ export const portfolioData: PortfolioData = {
         '作品优先采用本地存储、显式状态和人工确认，避免在求职与个人数据场景中越权自动化。',
     },
   ],
-  updatedAt: '2026.07',
+  updatedAt: '2026.08',
 }

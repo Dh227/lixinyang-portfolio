@@ -296,8 +296,8 @@ function Hero() {
 
         <div className="hero__editorial">
           <aside className="hero__index" aria-label="作品概况">
-            <strong>07</strong>
-            <span>个公开作品</span>
+            <strong>{portfolioData.stats[0].value}</strong>
+            <span>{portfolioData.stats[0].label}</span>
             <p>持续构建，也持续复盘。</p>
           </aside>
 
