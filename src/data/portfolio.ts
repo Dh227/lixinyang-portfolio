@@ -10,6 +10,7 @@ export interface Experience {
   role: string
   period: string
   summary: string
+  highlights?: string[]
 }
 
 export interface Stat {
@@ -115,7 +116,12 @@ export const portfolioData: PortfolioData = {
       role: '项目助理实习生（软件方向）',
       period: '2026.07 — 至今',
       summary:
-        '围绕智慧水务综合调度平台，完成站点与 IoT 设备配置、状态核查、监测量定位和历史报警分析。',
+        '支持智慧水务 ToB / G 端软件项目实施与交付，串联设备配置、平台核查、异常分析、问题跟踪与资料沉淀。',
+      highlights: [
+        '平台配置：参与站点与 IoT 设备档案、属性及监测量配置，核查在线状态与数据上报。',
+        '问题协同：结合设备状态、历史报警和监测量开展初步分析，记录异常并支持跨团队沟通。',
+        '交付支持：参与项目会议，整理设备清单与实施材料，为现场核对和后续交付保留可追溯资料。',
+      ],
     },
     {
       company: '江苏鱼跃医疗设备股份有限公司',
@@ -290,5 +296,5 @@ export const portfolioData: PortfolioData = {
         '作品优先采用本地存储、显式状态和人工确认，避免在求职与个人数据场景中越权自动化。',
     },
   ],
-  updatedAt: '2026.08',
+  updatedAt: '2026.08.04',
 }

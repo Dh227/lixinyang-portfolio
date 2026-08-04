@@ -444,7 +444,16 @@ function Profile() {
                 <h3>{experience.company}</h3>
                 <p className="experience-list__role">{experience.role}</p>
               </div>
-              <p className="experience-list__summary">{experience.summary}</p>
+              <div className="experience-list__body">
+                <p className="experience-list__summary">{experience.summary}</p>
+                {experience.highlights && (
+                  <ul className="experience-list__highlights">
+                    {experience.highlights.map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             </article>
           ))}
         </div>

@@ -788,6 +788,38 @@ video {
   line-height: 1.9;
 }
 
+.experience-list__body {
+  min-width: 0;
+}
+
+.experience-list__highlights {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding: 18px 0 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.experience-list__highlights li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--ink);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.experience-list__highlights li::before {
+  position: absolute;
+  top: 0.72em;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  background: var(--amber);
+  border-radius: 50%;
+  content: '';
+}
+
 .projects {
   background: var(--canvas);
 }
@@ -1646,7 +1678,7 @@ video {
     grid-template-columns: 110px 170px minmax(0, 1fr);
   }
 
-  .experience-list__summary {
+  .experience-list__body {
     grid-column: 3;
   }
 
@@ -1916,7 +1948,7 @@ video {
     padding: 28px 20px;
   }
 
-  .experience-list__summary {
+  .experience-list__body {
     grid-column: 1;
     margin-top: 10px;
   }
